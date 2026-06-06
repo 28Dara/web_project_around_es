@@ -2,9 +2,11 @@
 
 ## Descripción
 
-Este proyecto es una página interactiva desarrollada como parte del Sprint 6.
+Este proyecto es una página web interactiva desarrollada como parte del Sprint 6 del programa de desarrollo web.
 
-En esta etapa se trabajó con JavaScript para manipular elementos del DOM, gestionar ventanas modales y actualizar dinámicamente la información del perfil del usuario sin necesidad de recargar la página.
+A lo largo del sprint se trabajó en la construcción de una interfaz dinámica que permite al usuario interactuar con el contenido mediante JavaScript, manipulando el DOM, gestionando ventanas modales y actualizando información en tiempo real sin recargar la página.
+
+El proyecto se dividió en tres etapas progresivas: estructura base, interactividad con tarjetas y edición de perfil.
 
 ## Tecnologías utilizadas
 
@@ -16,38 +18,49 @@ En esta etapa se trabajó con JavaScript para manipular elementos del DOM, gesti
 
 ## Funcionalidades
 
-- Conexión de archivos JavaScript al proyecto
-- Creación de un array de objetos para almacenar tarjetas
-- Uso de `forEach()` para recorrer datos dinámicamente
-- Apertura y cierre de ventanas modales
-- Manipulación del DOM mediante `querySelector()`
-- Uso de funciones reutilizables para gestionar modales
-- Rellenado automático de formularios con información existente
-- Edición dinámica del perfil del usuario
+- Renderizado dinámico de tarjetas a partir de un array de objetos (`initialCards`)
+- Creación de elementos del DOM usando `template` y `cloneNode`
+- Uso de `forEach()` para generar tarjetas iniciales
+- Apertura y cierre de ventanas modales con funciones reutilizables
+- Edición del perfil del usuario mediante formulario
+- Relleno automático del formulario con datos actuales del perfil
+- Creación de nuevas tarjetas desde un formulario
+- Eliminación de tarjetas desde la interfaz
+- Sistema de “like” en tarjetas con `classList.toggle()`
+- Visualización de imágenes en popup (preview)
 - Manejo de eventos con `addEventListener()`
-- Gestión de formularios mediante el evento `submit`
-- Actualización de contenido utilizando `textContent` y `value`
+- Manejo de formularios con `submit`
+- Prevención de recarga con `preventDefault()`
+- Actualización del DOM con `textContent` y `value`
+
+## Arquitectura del proyecto
+
+- Código organizado en:
+  - Selectores del DOM
+  - Funciones reutilizables
+  - Event listeners
+- Funciones genéricas para abrir y cerrar modales
+- Tarjetas generadas como componentes reutilizables
+- Flujo de datos desde inputs hacia el DOM
 
 ## Lo aprendido
 
-Durante este proyecto practiqué:
-
-- Arrays y arrays de objetos
+- Manipulación del DOM en JavaScript
+- Trabajo con arrays y objetos
 - Iteración con `forEach()`
-- Acceso a propiedades de objetos
-- Selección y manipulación de elementos del DOM
-- Manejo de eventos (`click` y `submit`)
-- Uso de `preventDefault()`
-- Creación de funciones reutilizables
-- Organización del código en selectores, funciones y eventos
-- Separación de lógica JavaScript y estructura HTML
+- Creación y clonación de nodos del DOM
+- Manejo de eventos del usuario
+- Uso de modales y control de su estado
+- Prevención de comportamiento por defecto en formularios
+- Actualización dinámica de contenido sin recargar la página
+- Organización del código en funciones reutilizables
 
-## Próximos pasos
+## Estado del proyecto
 
-- Generar tarjetas dinámicamente mediante JavaScript
-- Implementar nuevas ventanas modales
-- Agregar validación de formularios
-- Mejorar la interacción del usuario mediante eventos y manipulación del DOM
+- Proyecto funcional y listo para entrega
+- Interactividad completa implementada
+- Modales funcionando correctamente (perfil, tarjetas e imagen)
+- Sin recarga de página para actualización de datos
 
 ## Autor
 
