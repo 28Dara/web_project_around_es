@@ -134,6 +134,10 @@ function renderCard(data) {
   cardsContainer.prepend(cardElement);
 }
 
+import { enableValidation } from "./validate.js";
+
+enableValidation();
+
 // Event Listeners
 editBtn.addEventListener("click", handleOpenEditModal);
 form.addEventListener("submit", handleProfileFormSubmit);

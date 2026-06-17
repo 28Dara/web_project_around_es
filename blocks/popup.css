@@ -157,3 +157,20 @@
     padding: 0;
   }
 }
+
+.popup__input-error {
+  color: #ff0000;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.popup__button:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.popup__button:disabled {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  color: black;
+  opacity: 0.3;
+}
