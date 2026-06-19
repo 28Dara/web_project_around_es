@@ -23,9 +23,10 @@ function toggleButtonState(form) {
   submitButton.disabled = !allValid;
 }
 
-function enableValidation() {
+function setEventListeners() {
   const forms = document.querySelectorAll(toValidate.forms);
   forms.forEach((form) => {
+    toggleButtonState(form);
     form.querySelectorAll(toValidate.inputs).forEach((input) => {
       input.addEventListener("input", () => {
         checkInputValidity(input, form);
@@ -35,4 +36,12 @@ function enableValidation() {
   });
 }
 
-export { enableValidation };
+function resetValidation(form) {
+  form.querySelectorAll(toValidate.inputs).forEach((input) => {
+    const errorElement = form.querySelector(`#${input.id}-error`);
+    errorElement.textContent = "";
+  });
+  toggleButtonState(form);
+}
+
+export { setEventListeners, toggleButtonState, resetValidation };
