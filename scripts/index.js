@@ -52,6 +52,8 @@ const imagePopup = document.querySelector("#image-popup");
 const popupImage = imagePopup.querySelector(".popup__image");
 const popupCaption = imagePopup.querySelector(".popup__caption");
 const closeImagePopupBtn = imagePopup.querySelector(".popup__close");
+const popups = document.querySelectorAll(".popup");
+const openedPopup = document.querySelector(".popup_is-opened");
 
 // Funciones
 function openModal(modal) {
@@ -159,4 +161,21 @@ closeNewCardBtn.addEventListener("click", () => {
 
 closeImagePopupBtn.addEventListener("click", () => {
   closeModal(imagePopup);
+});
+
+popups.forEach((popup) => {
+  popup.addEventListener("click", (evt) => {
+    if (evt.target === evt.currentTarget) {
+      closeModal(popup);
+    }
+  });
+});
+
+document.addEventListener("keydown", (evt) => {
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector(".popup_is-opened");
+    if (openedPopup) {
+      closeModal(openedPopup);
+    }
+  }
 });
