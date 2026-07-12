@@ -19,3 +19,19 @@ export interface SectionConfig<T> {
   items: T[];
   renderer: RendererFunction<T>;
 }
+
+export interface FormValues {
+  [key: string]: string;
+}
+
+export type HandleFormSubmitFunction =( data: FormValues) => void;
+
+export interface UserInfoSelectors {
+  nameSelector: string;
+  jobSelector: string;
+}
+
+export interface UserInfoData {
+  name: string;
+  job: string;
+}
