@@ -1,4 +1,4 @@
-import type { FormValidatorConfig } from "../types/types.js";
+import type { FormValidatorConfig } from '../types/types.js';
 
 export class FormValidator {
   private config: FormValidatorConfig;
@@ -11,23 +11,23 @@ export class FormValidator {
     this.form = form;
     this.inputList = form.querySelectorAll(config.inputSelector);
     this.submitButton = form.querySelector(
-      config.submitButtonSelector,
+      config.submitButtonSelector
     ) as HTMLButtonElement;
   }
 
   private hideInputError(input: HTMLInputElement): void {
     const errorElement = this.form.querySelector(
-      `#${input.id}-error`,
+      `#${input.id}-error`
     ) as HTMLElement;
 
     input.classList.remove(this.config.inputErrorClass);
-    errorElement.textContent = "";
+    errorElement.textContent = '';
     errorElement.classList.remove(this.config.errorClass);
   }
 
   private checkInputValidity(input: HTMLInputElement): void {
     const errorElement = this.form.querySelector(
-      `#${input.id}-error`,
+      `#${input.id}-error`
     ) as HTMLElement;
 
     if (!input.validity.valid) {
@@ -41,12 +41,12 @@ export class FormValidator {
 
   private toggleButtonState(): void {
     const isFormValid = Array.from(this.inputList).every(
-      (input) => input.validity.valid,
+      (input) => input.validity.valid
     );
     this.submitButton.disabled = !isFormValid;
     this.submitButton.classList.toggle(
       this.config.inactiveButtonClass,
-      !isFormValid,
+      !isFormValid
     );
   }
 
@@ -54,7 +54,7 @@ export class FormValidator {
     this.toggleButtonState();
 
     this.inputList.forEach((input) => {
-      input.addEventListener("input", () => {
+      input.addEventListener('input', () => {
         this.checkInputValidity(input);
         this.toggleButtonState();
       });
@@ -67,7 +67,7 @@ export class FormValidator {
 
   resetValidation(): void {
     this.inputList.forEach((input) => {
-      this.hideInputError(input);
+      this.checkInputValidity(input);
     });
     this.toggleButtonState();
   }
