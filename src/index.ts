@@ -46,7 +46,6 @@ editPopup.setEventListeners();
 function handleAddCardSubmit(data: FormValues): void {
   const newCardData: CardData = { name: data.place, link: data.link };
   renderCard(newCardData);
-  newCardPopup.close();
 }
 
 const newCardPopup = new PopupWithForm('#new-card-popup', handleAddCardSubmit);
@@ -73,14 +72,6 @@ const editButton = document.querySelector(
   '.profile__edit-button'
 ) as HTMLButtonElement;
 editButton.addEventListener('click', () => {
-  // Decisión de UX: el brief no especifica este caso, pero para ser
-  // consistentes con el comportamiento de "conservar datos al cerrar
-  // por fuera" (definido en Popup.ts), solo se rellena con la info
-  // guardada si el formulario está vacío. Así, si el usuario ya
-  // escribió algo y cerró por accidente, no pierde su borrador al
-  // reabrir el popup. El propósito de la página (editar y guardar
-  // nombre/puesto) se sigue cumpliendo igual: al hacer submit, siempre
-  // se guarda lo que esté escrito en ese momento.
   if (nameInput.value === '' && descriptionInput.value === '') {
     const currentInfo = userInfo.getUserInfo();
     nameInput.value = currentInfo.name;

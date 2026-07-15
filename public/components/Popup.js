@@ -25,9 +25,6 @@ export class Popup {
         });
         this.popupElement.addEventListener('click', (evt) => {
             if (evt.target === evt.currentTarget) {
-                // Decisión de UX: se conserva el contenido del formulario al cerrar
-                // haciendo clic afuera (a diferencia de la "X"), para no perder
-                // datos si el usuario sale por accidente.
                 this.close(false);
             }
         });
