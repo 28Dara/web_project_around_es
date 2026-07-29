@@ -1,52 +1,60 @@
-import type { CardData, HandleCardClick } from "../types/types.js";
+import type {
+  CardData,
+  HandleCardClick,
+  HandleCardDelete,
+} from '../types/types.js';
 
 export class Card {
-  private name: string;
-  private link: string;
+  private data: CardData;
   private selector: string;
+  private currentUserId: string;
   private handleCardClick: HandleCardClick;
   private element!: HTMLElement;
   private cardImageElement!: HTMLImageElement;
+  private handleCardDelete: HandleCardDelete;
 
   constructor(
-    { name, link }: CardData,
+    data: CardData,
     selector: string,
+    currentUserId: string,
     handleCardClick: HandleCardClick,
+    handleCardDelete: HandleCardDelete
   ) {
-    this.name = name;
-    this.link = link;
+    this.data = data;
     this.selector = selector;
+    this.currentUserId = currentUserId;
     this.handleCardClick = handleCardClick;
+    this.handleCardDelete = handleCardDelete;
   }
 
+  private isOwner(): boolean {
+    return this.data.owner === this.currentUserId;
+  }
   private getTemplate(): HTMLElement {
     const cardTemplate = document.querySelector(
-      this.selector,
+      this.selector
     ) as HTMLTemplateElement;
 
     return cardTemplate.content
-      .querySelector(".card")!
+      .querySelector('.card')!
       .cloneNode(true) as HTMLElement;
   }
 
-  private setEventListeners(): void {
+  private setEventListeners(deleteButton: HTMLButtonElement | null): void {
     const likeButton = this.element.querySelector(
-      ".card__like-button",
-    ) as HTMLButtonElement;
-    const deleteButton = this.element.querySelector(
-      ".card__delete-button",
+      '.card__like-button'
     ) as HTMLButtonElement;
 
-    likeButton.addEventListener("click", () => {
-      likeButton.classList.toggle("card__like-button_is-active");
+    likeButton.addEventListener('click', () => {
+      likeButton.classList.toggle('card__like-button_is-active');
     });
 
-    deleteButton.addEventListener("click", () => {
-      this.element.remove();
+    deleteButton?.addEventListener('click', () => {
+      this.handleCardDelete(this.data._id, this.element);
     });
 
-    this.cardImageElement.addEventListener("click", () => {
-      this.handleCardClick(this.name, this.link);
+    this.cardImageElement.addEventListener('click', () => {
+      this.handleCardClick(this.data.name, this.data.link);
     });
   }
 
@@ -54,17 +62,25 @@ export class Card {
     this.element = this.getTemplate();
 
     this.cardImageElement = this.element.querySelector(
-      ".card__image",
+      '.card__image'
     ) as HTMLImageElement;
     const cardTitleElement = this.element.querySelector(
-      ".card__title",
+      '.card__title'
     ) as HTMLElement;
+    let deleteButton = this.element.querySelector(
+      '.card__delete-button'
+    ) as HTMLButtonElement | null;
 
-    this.cardImageElement.src = this.link;
-    this.cardImageElement.alt = this.name;
-    cardTitleElement.textContent = this.name;
+    this.cardImageElement.src = this.data.link;
+    this.cardImageElement.alt = this.data.name;
+    cardTitleElement.textContent = this.data.name;
 
-    this.setEventListeners();
+    if (!this.isOwner()) {
+      deleteButton?.remove();
+      deleteButton = null;
+    }
+
+    this.setEventListeners(deleteButton);
 
     return this.element;
   }

@@ -7,8 +7,12 @@ export interface FormValidatorConfig {
 }
 
 export interface CardData {
+  _id: string;
   name: string;
   link: string;
+  owner: string;
+  createdAt: string;
+  isLiked: boolean;
 }
 
 export type HandleCardClick = (name: string, link: string) => void;
@@ -24,7 +28,7 @@ export interface FormValues {
   [key: string]: string;
 }
 
-export type HandleFormSubmitFunction =( data: FormValues) => void;
+export type HandleFormSubmitFunction = (data: FormValues) => void;
 
 export interface UserInfoSelectors {
   nameSelector: string;
@@ -35,3 +39,33 @@ export interface UserInfoData {
   name: string;
   job: string;
 }
+
+export interface ApiConfig {
+  baseUrl: string;
+  headers: {
+    authorization: string;
+    'Content-Type': string;
+  };
+}
+
+export interface UserData {
+  name: string;
+  about: string;
+  avatar: string;
+  _id: string;
+}
+
+export interface UserProfileFormData {
+  name: string;
+  about: string;
+}
+
+export interface CardFormData {
+  name: string;
+  link: string;
+}
+
+export type HandleCardDelete = (
+  cardId: string,
+  cardElement: HTMLElement
+) => void;
