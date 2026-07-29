@@ -69,3 +69,12 @@ export type HandleCardDelete = (
   cardId: string,
   cardElement: HTMLElement
 ) => void;
+
+export type HandleCardLike = (
+  cardId: string,
+  isLiked: boolean
+) => Promise<boolean>;
+
+export interface AvatarFormData {
+  avatar: string;
+}

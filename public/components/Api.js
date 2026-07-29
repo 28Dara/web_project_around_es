@@ -45,4 +45,15 @@ export class Api {
             throw new Error(`Error: ${res.status}`);
         }
     }
+    async changeLikeCardStatus(cardId, isCurrentlyLiked) {
+        return this.sendRequest(`/cards/${cardId}/likes`, {
+            method: isCurrentlyLiked ? 'DELETE' : 'PUT',
+        });
+    }
+    async updateAvatar(data) {
+        return this.sendRequest('/users/me/avatar', {
+            method: 'PATCH',
+            body: JSON.stringify(data),
+        });
+    }
 }

@@ -4,6 +4,7 @@ import type {
   CardData,
   UserProfileFormData,
   CardFormData,
+  AvatarFormData,
 } from '../types/types.js';
 
 export class Api {
@@ -64,5 +65,21 @@ export class Api {
     if (!res.ok) {
       throw new Error(`Error: ${res.status}`);
     }
+  }
+
+  async changeLikeCardStatus(
+    cardId: string,
+    isCurrentlyLiked: boolean
+  ): Promise<CardData> {
+    return this.sendRequest<CardData>(`/cards/${cardId}/likes`, {
+      method: isCurrentlyLiked ? 'DELETE' : 'PUT',
+    });
+  }
+
+  async updateAvatar(data: AvatarFormData): Promise<UserData> {
+    return this.sendRequest<UserData>('/users/me/avatar', {
+      method: 'PATCH',
+      body: JSON.stringify(data),
+    });
   }
 }
