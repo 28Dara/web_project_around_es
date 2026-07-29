@@ -4,19 +4,22 @@ import { Section } from './components/Section.js';
 import { PopupWithImage } from './components/PopupWithImage.js';
 import { PopupWithForm } from './components/PopupWithForm.js';
 import { UserInfo } from './components/UserInfo.js';
-import { defaultFormConfig, initialCards } from './utils/constants.js';
+import { defaultFormConfig, apiConfig } from './utils/constants.js';
 import type { CardData, FormValues } from './types/types.js';
+import { Api } from './components/Api.js';
 
 const userInfo = new UserInfo({
   nameSelector: '.profile__title',
   jobSelector: '.profile__description',
 });
 
+const api = new Api(apiConfig);
+
 function handleCardClick(name: string, link: string): void {
   imagePopup.open({ name, link });
 }
 
-function renderCard(item: CardData): void {
+function createCard(item: CardData): void {
   const cardElement = new Card(
     item,
     '#card-template',
@@ -27,8 +30,7 @@ function renderCard(item: CardData): void {
 
 const cardListSection = new Section<CardData>(
   {
-    items: initialCards,
-    renderer: renderCard,
+    renderer: createCard,
   },
   '.cards__list'
 );
@@ -45,7 +47,7 @@ editPopup.setEventListeners();
 
 function handleAddCardSubmit(data: FormValues): void {
   const newCardData: CardData = { name: data.place, link: data.link };
-  renderCard(newCardData);
+  createCard(newCardData);
 }
 
 const newCardPopup = new PopupWithForm('#new-card-popup', handleAddCardSubmit);
@@ -88,5 +90,3 @@ addButton.addEventListener('click', () => {
   addCardFormValidator.resetValidation();
   newCardPopup.open();
 });
-
-cardListSection.renderItems();
