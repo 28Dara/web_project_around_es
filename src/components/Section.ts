@@ -1,4 +1,4 @@
-import type { SectionConfig, RendererFunction } from "../types/types.js";
+import type { SectionConfig, RendererFunction } from '../types/types.js';
 
 export class Section<T> {
   private items: T[];
@@ -7,18 +7,16 @@ export class Section<T> {
 
   constructor(
     { items, renderer }: SectionConfig<T>,
-    containerSelector: string,
+    containerSelector: string
   ) {
     this.items = items;
     this.renderer = renderer;
-    this.container = document.querySelector(
-      containerSelector,
-    ) as HTMLElement;
+    this.container = document.querySelector(containerSelector) as HTMLElement;
   }
 
   renderItems(): void {
     this.items.forEach((item) => {
-        this.renderer(item);
+      this.renderer(item);
     });
   }
 

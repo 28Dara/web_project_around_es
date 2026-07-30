@@ -1,6 +1,4 @@
-import type { FormValidatorConfig } from '../types/types.js';
-import type { CardData } from '../types/types.js';
-import type { ApiConfig } from '../types/types.js';
+import type { FormValidatorConfig, ApiConfig } from '../types/types.js';
 
 export const defaultFormConfig: FormValidatorConfig = {
   inputSelector: '.popup__input',
