@@ -14,6 +14,7 @@ export class PopupWithForm extends Popup {
         this.defaultButtonText = this.submitButton.textContent || '';
     }
     renderLoading(isLoading, loadingText = 'Guardando...') {
+        this.submitButton.disabled = isLoading;
         this.submitButton.textContent = isLoading
             ? loadingText
             : this.defaultButtonText;
