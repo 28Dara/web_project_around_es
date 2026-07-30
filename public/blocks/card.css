@@ -1,10 +1,11 @@
 .card {
-  font-family: "Inter", Arial, sans-serif;
+  font-family: 'Inter', Arial, sans-serif;
   border-radius: 10px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   position: relative;
+  user-select: none;
 }
 
 .card__title {
@@ -35,7 +36,7 @@
 .card__like-button {
   width: 21px;
   height: 19px;
-  background: transparent url("../images/like-inactive.svg") center no-repeat;
+  background: transparent url('../images/like-inactive.svg') center no-repeat;
   background-size: 21px 18px;
   border: none;
   padding: 0;
@@ -50,7 +51,7 @@
 .card__delete-button {
   width: 18px;
   height: 18px;
-  background: transparent url("../images/delete-icon.svg") center no-repeat;
+  background: transparent url('../images/delete-icon.svg') center no-repeat;
   background-size: 18px 18px;
   border: none;
   cursor: pointer;
@@ -66,5 +67,5 @@
 }
 
 .card__like-button_is-active {
-  background: transparent url("../images/like-active.svg") no-repeat;
+  background: transparent url('../images/like-active.svg') no-repeat;
 }

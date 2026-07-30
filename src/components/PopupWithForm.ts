@@ -28,6 +28,7 @@ export class PopupWithForm extends Popup {
     isLoading: boolean,
     loadingText: string = 'Guardando...'
   ): void {
+    this.submitButton.disabled = isLoading;
     this.submitButton.textContent = isLoading
       ? loadingText
       : this.defaultButtonText;
