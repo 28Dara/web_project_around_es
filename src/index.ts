@@ -53,7 +53,6 @@ const addCardFormValidator = new FormValidator(
 addCardFormValidator.enableValidation();
 
 const nameInput = document.querySelector('#name-input') as HTMLInputElement;
-
 const descriptionInput = document.querySelector(
   '#description-input'
 ) as HTMLInputElement;
@@ -111,7 +110,7 @@ async function handleCardLike(
     const updatedCard = await api.changeLikeCardStatus(cardId, isLiked);
     return updatedCard.isLiked;
   } catch (err) {
-    console.error('Error al actualizar el like', err);
+    console.error('Error al actualizar el like:', err);
     return isLiked;
   }
 }
