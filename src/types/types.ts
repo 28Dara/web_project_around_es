@@ -28,7 +28,9 @@ export interface FormValues {
   [key: string]: string;
 }
 
-export type HandleFormSubmitFunction = (data: FormValues) => void;
+export type HandleFormSubmitFunction = (
+  data: FormValues
+) => void | Promise<void>;
 
 export interface UserInfoSelectors {
   nameSelector: string;
