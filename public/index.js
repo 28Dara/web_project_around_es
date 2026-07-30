@@ -74,7 +74,7 @@ async function handleCardLike(cardId, isLiked) {
         return updatedCard.isLiked;
     }
     catch (err) {
-        console.error('Error al actualizar el like', err);
+        console.error('Error al actualizar el like:', err);
         return isLiked;
     }
 }
