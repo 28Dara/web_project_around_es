@@ -4,6 +4,8 @@ import type { FormValues, HandleFormSubmitFunction } from '../types/types.js';
 export class PopupWithForm extends Popup {
   private formElement: HTMLFormElement;
   private inputList: NodeListOf<HTMLInputElement>;
+  private submitButton: HTMLButtonElement;
+  private defaultButtonText: string;
   private handleFormSubmit: HandleFormSubmitFunction;
 
   constructor(
@@ -16,6 +18,19 @@ export class PopupWithForm extends Popup {
       '.popup__form'
     ) as HTMLFormElement;
     this.inputList = this.formElement.querySelectorAll('input');
+    this.submitButton = this.formElement.querySelector(
+      '.popup__button'
+    ) as HTMLButtonElement;
+    this.defaultButtonText = this.submitButton.textContent || '';
+  }
+
+  renderLoading(
+    isLoading: boolean,
+    loadingText: string = 'Guardando...'
+  ): void {
+    this.submitButton.textContent = isLoading
+      ? loadingText
+      : this.defaultButtonText;
   }
 
   private getInputValues(): FormValues {

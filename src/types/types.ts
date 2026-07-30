@@ -33,11 +33,13 @@ export type HandleFormSubmitFunction = (data: FormValues) => void;
 export interface UserInfoSelectors {
   nameSelector: string;
   jobSelector: string;
+  avatarSelector: string;
 }
 
 export interface UserInfoData {
   name: string;
   job: string;
+  avatar: string;
 }
 
 export interface ApiConfig {
@@ -64,6 +66,8 @@ export interface CardFormData {
   name: string;
   link: string;
 }
+
+export type CardPreview = CardFormData;
 
 export type HandleCardDelete = (
   cardId: string,

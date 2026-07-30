@@ -1,5 +1,5 @@
-import { Popup } from "./Popup.js";
-import type { CardData } from "../types/types.js";
+import { Popup } from './Popup.js';
+import type { CardPreview } from '../types/types.js';
 
 export class PopupWithImage extends Popup {
   private imageElement: HTMLImageElement;
@@ -8,14 +8,14 @@ export class PopupWithImage extends Popup {
   constructor(popupSelector: string) {
     super(popupSelector);
     this.imageElement = this.popupElement.querySelector(
-      ".popup__image",
+      '.popup__image'
     ) as HTMLImageElement;
     this.captionElement = this.popupElement.querySelector(
-      ".popup__caption",
+      '.popup__caption'
     ) as HTMLElement;
   }
 
-  open(data?: CardData): void {
+  open(data?: CardPreview): void {
     if (data) {
       this.imageElement.src = data.link;
       this.imageElement.alt = data.name;
